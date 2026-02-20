@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>他己紹介プレゼン作成ツール</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+<style>
+/* ===================================
+   Presentation Page - Complete Styles
+   =================================== */
+
+/* ===================================
+   Global Styles - Clean & Modern Design
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Primary Color - Orange Accent */
+    --primary-color: #FF8C00;
+    --primary-dark: #E67E00;
+    --primary-light: #FFA733;
+    
+    /* Secondary Colors */
+    --secondary-color: #2D3436;
+    --secondary-light: #636E72;
+    
+    /* Background Colors */
+    --bg-primary: #FAFAFA;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #F5F5F5;
+    --bg-card: #FFFFFF;
+    
+    /* Text Colors */
+    --text-primary: #2D3436;
+    --text-secondary: #636E72;
+    --text-muted: #B2BEC3;
+    
+    /* Border & Shadow */
+    --border-color: #DFE6E9;
+    --border-light: #F0F0F0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.12);
+    
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===================================
+   Container
+   =================================== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    flex: 1;
+}
+
+/* ===================================
+   Header
+   =================================== */
+.header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 48px 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 40px;
+    animation: slideDown 0.6s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.btn-icon {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-icon:active {
+    transform: translateY(0);
+}
+
+.header-text h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-text h1 i {
+    font-size: 1.8rem;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Card
+   =================================== */
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 32px;
+    margin-bottom: 24px;
+}
+
+/* ===================================
+   Tab Content
+   =================================== */
+.tab-content {
+    animation: fadeUp 0.5s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Form Styles
+   =================================== */
+.name-group {
+    margin-bottom: 40px;
+}
+
+.name-group label {
+    font-size: 1.1rem;
+}
+
+.name-group input[type="text"] {
+    font-size: 1.1rem;
+    padding: 14px 18px;
+}
+
+.form-category {
+    margin-bottom: 50px;
+}
+
+.category-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-section {
+    margin-bottom: 30px;
+    padding: 24px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.form-section h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.form-group label i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.1);
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 24px 16px 60px;
+    }
+
+    .header {
+        padding: 32px 24px;
+        margin-bottom: 24px;
+    }
+
+    .header-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .header-text h1 i {
+        font-size: 1.4rem;
+    }
+
+    .card {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-text h1 {
+        font-size: 1.3rem;
+    }
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1><i class="fas fa-presentation"></i> 他己紹介プレゼン作成ツール</h1>
+                </div>
+                <div class="header-buttons">
+                    <button type="button" id="preview-btn" class="btn-icon" title="プレビュー">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button type="button" id="download-btn" class="btn-icon" title="ダウンロード">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <section class="tab-content active">
+            <div class="card">
+                <form id="presentation-form">
+                    <div class="form-group name-group">
+                        <label><i class="fas fa-user"></i> お名前（プレゼンに表示されます）</label>
+                        <input type="text" name="name" required placeholder="山田太郎">
+                    </div>
+
+                    <!-- 過去 -->
+                    <div class="form-category">
+                        <h2 class="category-title"><i class="fas fa-history"></i> 過去</h2>
+                        
+                        <div class="form-section">
+                            <h3><i class="fas fa-seedling"></i> 幼少期</h3>
+                            <div class="form-group">
+                                <label>どこで生まれ、どんな環境で育ちましたか？</label>
+                                <textarea name="q1" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>どんな子どもでしたか？</label>
+                                <textarea name="q2" rows="3" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-graduation-cap"></i> 学生時代</h3>
+                            <div class="form-group">
+                                <label>周囲と比較してどんな学生・人物でしたか？</label>
+                                <textarea name="q3" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>学生時代を通して一番熱中したことや時間を使ったことは何ですか？</label>
+                                <textarea name="q4" rows="3" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-briefcase"></i> 社会人</h3>
+                            <div class="form-group">
+                                <label>社会人最初の仕事はどういうきっかけで就きましたか？</label>
+                                <textarea name="q5" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>現在に至るキャリアストーリーを簡単に教えてください</label>
+                                <textarea name="q6" rows="3" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-lightbulb"></i> その他</h3>
+                            <div class="form-group">
+                                <label>人生を通して今の自分に影響を与えた一番の出来事や出会い・転機はなんですか？</label>
+                                <textarea name="q7" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 現在 -->
+                    <div class="form-category">
+                        <h2 class="category-title"><i class="fas fa-clock"></i> 現在</h2>
+                        
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label>今の人生の楽しみは何ですか？</label>
+                                <textarea name="q8" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>意外な一面や自慢できることがあるとしたら？</label>
+                                <textarea name="q9" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 未来 -->
+                    <div class="form-category">
+                        <h2 class="category-title"><i class="fas fa-rocket"></i> 未来</h2>
+                        
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label>人生を終えるまでにやりたいことはありますか？</label>
+                                <textarea name="q10" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 自由質問 -->
+                    <div class="form-category">
+                        <h2 class="category-title"><i class="fas fa-edit"></i> 自由質問（任意）</h2>
+                        
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label>質問 1</label>
+                                <input type="text" name="q11_question" placeholder="例：好きな言葉や座右の銘は何ですか？">
+                            </div>
+                            <div class="form-group">
+                                <label>回答 1</label>
+                                <textarea name="q11_answer" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label>質問 2</label>
+                                <input type="text" name="q12_question" placeholder="例：最近ハマっていることは何ですか？">
+                            </div>
+                            <div class="form-group">
+                                <label>回答 2</label>
+                                <textarea name="q12_answer" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+<script>
+// ===================================
+// 他己紹介プレゼン作成ツール
+// ===================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupEventListeners();
+});
+
+function setupEventListeners() {
+    document.getElementById('preview-btn').addEventListener('click', previewPresentation);
+    document.getElementById('download-btn').addEventListener('click', downloadPresentation);
+}
+
+function getFormData() {
+    const form = document.getElementById('presentation-form');
+    
+    // バリデーション
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return null;
+    }
+    
+    const formData = new FormData(form);
+    return {
+        name: formData.get('name'),
+        q1: formData.get('q1'),
+        q2: formData.get('q2'),
+        q3: formData.get('q3'),
+        q4: formData.get('q4'),
+        q5: formData.get('q5'),
+        q6: formData.get('q6'),
+        q7: formData.get('q7'),
+        q8: formData.get('q8'),
+        q9: formData.get('q9'),
+        q10: formData.get('q10'),
+        q11_question: formData.get('q11_question'),
+        q11_answer: formData.get('q11_answer'),
+        q12_question: formData.get('q12_question'),
+        q12_answer: formData.get('q12_answer')
+    };
+}
+
+function previewPresentation() {
+    const data = getFormData();
+    if (!data) return;
+    
+    const html = createPresentationHTML(data);
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(html);
+    newWindow.document.close();
+}
+
+function downloadPresentation() {
+    const data = getFormData();
+    if (!data) return;
+    
+    const html = createPresentationHTML(data);
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${data.name}_presentation.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function createPresentationHTML(data) {
+    return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${data.name}さんの他己紹介</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #FF8C00;
+            --primary-dark: #E67E00;
+            --primary-light: #FFA733;
+            --text-primary: #2D3436;
+            --text-secondary: #636E72;
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE4CC 100%);
+            min-height: 100vh;
+            padding: 60px 20px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .presentation {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .slide {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 70px;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 10px 40px rgba(255, 140, 0, 0.1),
+                0 4px 12px rgba(0, 0, 0, 0.05);
+            animation: slideIn 0.6s ease;
+            border: 1px solid rgba(255, 140, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title-slide {
+            text-align: center;
+            padding: 120px 60px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .title-slide h1 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .title-slide p {
+            font-size: 1.6rem;
+            opacity: 0.95;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 3px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-dark);
+        }
+
+        .question {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            padding-left: 20px;
+            border-left: 4px solid var(--primary-light);
+            position: relative;
+        }
+
+        .question::before {
+            content: 'Q';
+            position: absolute;
+            left: -12px;
+            top: -2px;
+            background: var(--primary-color);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .answer {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            line-height: 2;
+            padding: 30px;
+            background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E6 100%);
+            border-radius: 16px;
+            margin-bottom: 40px;
+            white-space: pre-wrap;
+            border: 1px solid rgba(255, 140, 0, 0.15);
+            box-shadow: 0 2px 8px rgba(255, 140, 0, 0.05);
+            position: relative;
+        }
+
+        .answer-content {
+            padding-left: 0;
+        }
+
+        .end-slide {
+            text-align: center;
+            padding: 120px 60px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .end-slide::before {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite reverse;
+        }
+
+        .end-slide h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 24px 16px;
+            }
+
+            .slide {
+                padding: 40px 30px;
+                border-radius: 16px;
+            }
+
+            .title-slide {
+                padding: 80px 30px;
+            }
+
+            .title-slide h1 {
+                font-size: 2.2rem;
+            }
+
+            .title-slide p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .question {
+                font-size: 1rem;
+                padding-left: 16px;
+            }
+
+            .answer {
+                font-size: 0.95rem;
+                padding: 24px;
+                line-height: 1.8;
+            }
+
+            .answer-content {
+                padding-left: 0;
+            }
+
+            .end-slide h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .slide {
+                page-break-after: always;
+                box-shadow: none;
+                margin-bottom: 0;
+                border: none;
+            }
+
+            .slide::before,
+            .title-slide::before,
+            .end-slide::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- タイトルスライド -->
+        <div class="slide title-slide">
+            <h1>${data.name}さん</h1>
+            <p>他己紹介</p>
+        </div>
+
+        <!-- 幼少期 -->
+        <div class="slide">
+            <h2 class="section-title">幼少期</h2>
+            
+            <div class="question">どこで生まれ、どんな環境で育ちましたか？</div>
+            <div class="answer"><div class="answer-content">${data.q1}</div></div>
+            
+            <div class="question">どんな子どもでしたか？</div>
+            <div class="answer"><div class="answer-content">${data.q2}</div></div>
+        </div>
+
+        <!-- 学生時代 -->
+        <div class="slide">
+            <h2 class="section-title">学生時代</h2>
+            
+            <div class="question">周囲と比較してどんな学生・人物でしたか？</div>
+            <div class="answer"><div class="answer-content">${data.q3}</div></div>
+            
+            <div class="question">学生時代を通して一番熱中したことや時間を使ったことは何ですか？</div>
+            <div class="answer"><div class="answer-content">${data.q4}</div></div>
+        </div>
+
+        <!-- 社会人 -->
+        <div class="slide">
+            <h2 class="section-title">社会人</h2>
+            
+            <div class="question">社会人最初の仕事はどういうきっかけで就きましたか？</div>
+            <div class="answer"><div class="answer-content">${data.q5}</div></div>
+            
+            <div class="question">現在に至るキャリアストーリーを簡単に教えてください</div>
+            <div class="answer"><div class="answer-content">${data.q6}</div></div>
+        </div>
+
+        <!-- その他 -->
+        <div class="slide">
+            <h2 class="section-title">その他</h2>
+            
+            <div class="question">人生を通して今の自分に影響を与えた一番の出来事や出会い・転機はなんですか？</div>
+            <div class="answer"><div class="answer-content">${data.q7}</div></div>
+        </div>
+
+        <!-- 現在 -->
+        <div class="slide">
+            <h2 class="section-title">現在</h2>
+            
+            <div class="question">今の人生の楽しみは何ですか？</div>
+            <div class="answer"><div class="answer-content">${data.q8}</div></div>
+            
+            <div class="question">意外な一面や自慢できることがあるとしたら？</div>
+            <div class="answer"><div class="answer-content">${data.q9}</div></div>
+        </div>
+
+        <!-- 未来 -->
+        <div class="slide">
+            <h2 class="section-title">未来</h2>
+            
+            <div class="question">人生を終えるまでにやりたいことはありますか？</div>
+            <div class="answer"><div class="answer-content">${data.q10}</div></div>
+        </div>
+
+        <!-- 自由質問 -->
+        ${data.q11_question && data.q11_answer ? `
+        <div class="slide">
+            <h2 class="section-title">その他</h2>
+            
+            <div class="question">${data.q11_question}</div>
+            <div class="answer"><div class="answer-content">${data.q11_answer}</div></div>
+        </div>` : ''}
+
+        ${data.q12_question && data.q12_answer ? `
+        <div class="slide">
+            <h2 class="section-title">その他</h2>
+            
+            <div class="question">${data.q12_question}</div>
+            <div class="answer"><div class="answer-content">${data.q12_answer}</div></div>
+        </div>` : ''}
+
+        <!-- エンドスライド -->
+        <div class="slide end-slide">
+            <h2>ご清聴ありがとうございました</h2>
+        </div>
+    </div>
+</body>
+</html>`;
+}
+
+</script>
+</body>
+</html>
